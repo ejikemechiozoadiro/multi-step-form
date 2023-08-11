@@ -1,14 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+
 :root {
     --color-main-background: hsl(217, 100%, 97%);
     --color-primary: hsl(213, 96%, 18%);
-    ---color-white: hsl(0, 0%, 100%);
-    ---color-grey: hsl(0, 3%, 87%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-grey: hsl(0, 3%, 87%);
     --color-secondary: hsl(243, 100%, 62%);
     --color-selected-grey: hsl(229, 24%, 87%);
     --color-step-selected: hsl(206, 94%, 87%);
+    font-size: 16px;
+
 }
 
 body {
     background-color: var(--color-main-background);
     margin: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
 }
