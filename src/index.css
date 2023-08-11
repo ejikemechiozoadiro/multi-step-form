@@ -7,3 +7,8 @@
     --color-selected-grey: hsl(229, 24%, 87%);
     --color-step-selected: hsl(206, 94%, 87%);
 }
+
+body {
+    background-color: var(--color-main-background);
+    margin: 0;
+}

@@ -1,0 +1,23 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70vh;
+}
+
+.main-content {
+    height: 50vh;
+    margin: -5.5rem 1.2rem 1.2rem;  
+    background: var(---color-white);
+    border-radius: 15px;
+}
+
+.btn-container {
+    align-self: end;
+}
+
+.btn {
+    margin-right: 1.2rem;
+    width: 100px;
+    height: 40px;
+}
