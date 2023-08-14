@@ -1,3 +1,4 @@
+import BillingCycle from "../BillingCycle";
 import PersonalInfo from "../PersonalInfo";
 import "./MainContainer.css";
 
@@ -11,6 +12,7 @@ const MainContainer = ({ currentStep }: Props) => {
       <div className="main-container">
         <div className="main-content">
           {currentStep === "step1" && <PersonalInfo />}
+          {currentStep === "step2" && <BillingCycle />}
         </div>
       </div>
       <div className="white__space"></div>

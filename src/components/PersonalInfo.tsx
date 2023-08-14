@@ -34,6 +34,7 @@ const PersonalInfo = () => {
       <div className="step__container">
         <label className="step__heading">Email Address</label>
         <input
+          required
           {...register("email")}
           className="step__input"
           placeholder="e.g stephenking@lorem.com"
@@ -44,6 +45,7 @@ const PersonalInfo = () => {
       <div className="step__container">
         <label className="step__heading">Phone Number</label>
         <input
+          required
           {...register("phone")}
           className="step__input"
           placeholder="e.g. +1 234 567 890"
@@ -51,7 +53,7 @@ const PersonalInfo = () => {
         />
       </div>
 
-      <button className="btn">Next Step</button>
+      <button className="btn__next">Next Step</button>
     </form>
   );
 };

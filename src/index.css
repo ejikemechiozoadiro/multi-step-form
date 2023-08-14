@@ -5,6 +5,7 @@
     --color-primary: hsl(213, 96%, 18%);
     --color-white: hsl(0, 0%, 100%);
     --color-grey: hsl(0, 0%, 75%);
+    --color-lightgrey: hsl(231, 100%, 99%);
     --color-secondary: hsl(243, 100%, 62%);
     --color-selected-grey: hsl(229, 24%, 87%);
     --color-step-selected: hsl(206, 94%, 87%);
@@ -47,7 +48,19 @@ body {
     }
 }
 
-.btn {
+.btn__prev {
+    background: none;
+    border: 0;
+    border-radius: 5px;
+    color: var(--color-grey);
+    width: 100px;
+    height: 40px;
+    position: fixed;
+    left: 1.2rem;
+    bottom: 1rem;
+}
+
+.btn__next {
     background: var(--color-primary);
     border: 0;
     border-radius: 5px;
