@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Nav.css";
 
 interface Props {
   onSelectStep: (step: string) => void;
 }
-
 const Nav = ({ onSelectStep }: Props) => {
-  const [step, setStep] = useState("");
+  const [step, setStep] = useState("step1");
+
+  useEffect(() => {
+    onSelectStep(step);
+  }, [step]);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStep(e.target.value);
-    onSelectStep(e.target.value);
   };
 
   return (
@@ -32,7 +34,7 @@ const Nav = ({ onSelectStep }: Props) => {
             </label>
           </span>
           <input
-            className="step-radio"
+            className="step__radio"
             type="radio"
             value="step1"
             name="step"
@@ -57,7 +59,7 @@ const Nav = ({ onSelectStep }: Props) => {
             </label>
           </span>
           <input
-            className="step-radio"
+            className="step__radio"
             type="radio"
             name="step"
             value="step2"
@@ -82,7 +84,7 @@ const Nav = ({ onSelectStep }: Props) => {
             </label>
           </span>
           <input
-            className="step-radio"
+            className="step__radio"
             type="radio"
             name="step"
             value="step3"
@@ -107,7 +109,7 @@ const Nav = ({ onSelectStep }: Props) => {
             </label>
           </span>
           <input
-            className="step-radio"
+            className="step__radio"
             type="radio"
             name="step"
             value="step4"

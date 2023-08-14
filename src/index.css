@@ -4,7 +4,7 @@
     --color-main-background: hsl(217, 100%, 97%);
     --color-primary: hsl(213, 96%, 18%);
     --color-white: hsl(0, 0%, 100%);
-    --color-grey: hsl(0, 3%, 87%);
+    --color-grey: hsl(0, 0%, 75%);
     --color-secondary: hsl(243, 100%, 62%);
     --color-selected-grey: hsl(229, 24%, 87%);
     --color-step-selected: hsl(206, 94%, 87%);
@@ -37,5 +37,30 @@ body {
         height: 70vh;
         overflow: hidden;
         padding: 1rem;
+        position: relative;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .app {
+        width: 60vw;
+    }
+}
+
+.btn {
+    background: var(--color-primary);
+    border: 0;
+    border-radius: 5px;
+    color: var(--color-white);
+    width: 100px;
+    height: 40px;
+    position: fixed;
+    right: 1.2rem;
+    bottom: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+    .btn {
+        position: absolute;
     }
 }

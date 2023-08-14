@@ -4,12 +4,13 @@ import MainContainer from "./components/MainContainer";
 import Nav from "./components/Nav";
 
 function App() {
-  const [currentStep, setCurrentStep] = useState();
+  const [currentStep, setCurrentStep] = useState("");
+
   return (
     <>
       <div className="app">
-        <Nav onSelectStep={() => setCurrentStep} />
-        <MainContainer />
+        <Nav onSelectStep={(step) => setCurrentStep(step)} />
+        <MainContainer currentStep={currentStep} />
       </div>
     </>
   );
