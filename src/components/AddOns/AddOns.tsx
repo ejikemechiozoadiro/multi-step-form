@@ -1,12 +1,39 @@
+import { useEffect, useState } from "react";
 import { addOnsMonthly } from "../../data/AddOnsMonthly";
 import { addOnsYearly } from "../../data/AddOnsYearly";
 import "./AddOns.css";
 
-interface Props {
-  billingCycle: string | undefined;
+export interface AddOn {
+  id: string;
+  heading: string;
+  pricing: string;
 }
 
-const AddOns = ({ billingCycle }: Props) => {
+interface Props {
+  billingCycle: string | undefined;
+  onSelectAddons: (allAddons: AddOn[]) => void;
+}
+
+const AddOns = ({ billingCycle, onSelectAddons }: Props) => {
+  const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
+  console.log(selectedAddOns);
+
+  useEffect(() => {
+    onSelectAddons(selectedAddOns);
+  }, [selectedAddOns]);
+
+  const handleAddOnClick = (addon: AddOn) => {
+    setSelectedAddOns((allAddOns) => {
+      if (allAddOns.some((item) => item.id === addon.id)) {
+        // If addon is already selected, remove it from the list
+        return allAddOns.filter((item) => item.id !== addon.id);
+      } else {
+        // Otherwise, add to the list
+        return [...allAddOns, addon];
+      }
+    });
+  };
+
   return (
     <>
       <form>
@@ -18,8 +45,20 @@ const AddOns = ({ billingCycle }: Props) => {
 
         {(billingCycle === "monthly" ? addOnsMonthly : addOnsYearly).map(
           (addon) => (
-            <div className="addon">
-              <input type="checkbox" id={addon.id} />
+            <div
+              className={`addon ${selectedAddOns.map((item) =>
+                item.id === addon.id ? "addon__selected" : ""
+              )}`}
+              key={addon.id}
+              id={addon.id}
+              onClick={() => handleAddOnClick(addon)}
+            >
+              <input
+                type="checkbox"
+                id={addon.id}
+                checked={selectedAddOns.some((item) => item.id === addon.id)}
+                readOnly
+              />
               <div className="addon__container">
                 <div className="step__heading addon__heading">
                   {addon.heading}
@@ -30,6 +69,9 @@ const AddOns = ({ billingCycle }: Props) => {
             </div>
           )
         )}
+
+        <button className="btn__prev">Go Back</button>
+        <button className="btn__next">Next Step</button>
       </form>
     </>
   );

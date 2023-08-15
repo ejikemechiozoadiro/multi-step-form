@@ -3,6 +3,7 @@ import AddOns from "../AddOns";
 import BillingCycle from "../BillingCycle";
 import PersonalInfo from "../PersonalInfo";
 import "./MainContainer.css";
+import { AddOn } from "../AddOns/AddOns";
 
 interface Props {
   currentStep: string;
@@ -10,6 +11,7 @@ interface Props {
 
 const MainContainer = ({ currentStep }: Props) => {
   const [billingCycle, setBillingCycle] = useState<string>();
+  const [allAddOns, setAllAddOns] = useState<AddOn[] | undefined>();
 
   return (
     <>
@@ -21,7 +23,12 @@ const MainContainer = ({ currentStep }: Props) => {
               onSelectBilling={(billing) => setBillingCycle(billing)}
             />
           )}
-          {currentStep === "step3" && <AddOns billingCycle={billingCycle} />}
+          {currentStep === "step3" && (
+            <AddOns
+              onSelectAddons={(allAddOns) => setAllAddOns(allAddOns)}
+              billingCycle={billingCycle}
+            />
+          )}
         </div>
       </div>
       <div className="white__space"></div>
