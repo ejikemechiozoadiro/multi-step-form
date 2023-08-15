@@ -1,3 +1,5 @@
+import { addOnsMonthly } from "../../data/AddOnsMonthly";
+import { addOnsYearly } from "../../data/AddOnsYearly";
 import "./AddOns.css";
 
 interface Props {
@@ -5,48 +7,6 @@ interface Props {
 }
 
 const AddOns = ({ billingCycle }: Props) => {
-  const addOnsMonthly = [
-    {
-      id: "1",
-      heading: "Online service",
-      info: "Access to multiplayer games",
-      pricing: "+$1/mo",
-    },
-    {
-      id: "2",
-      heading: "Larger storage",
-      info: "Extra 1TB of cloud save",
-      pricing: "+$2/mo",
-    },
-    {
-      id: "3",
-      heading: "Customizable profile",
-      info: "Custom theme on your profile",
-      pricing: "+$2/mo",
-    },
-  ];
-
-  const addOnsYearly = [
-    {
-      id: "1",
-      heading: "Online service",
-      info: "Access to multiplayer games",
-      pricing: "+$10/yr",
-    },
-    {
-      id: "2",
-      heading: "Larger storage",
-      info: "Extra 1TB of cloud save",
-      pricing: "+$20/yr",
-    },
-    {
-      id: "3",
-      heading: "Customizable profile",
-      info: "Custom theme on your profile",
-      pricing: "+$20/yr",
-    },
-  ];
-
   return (
     <>
       <form>
@@ -60,12 +20,12 @@ const AddOns = ({ billingCycle }: Props) => {
           (addon) => (
             <div className="addon">
               <input type="checkbox" id={addon.id} />
-              <span className="addon__container">
+              <div className="addon__container">
                 <div className="step__heading addon__heading">
                   {addon.heading}
                 </div>
                 <div className="step__info addon__info">{addon.info}</div>
-              </span>
+              </div>
               <span className="step__heading">{addon.pricing}</span>
             </div>
           )

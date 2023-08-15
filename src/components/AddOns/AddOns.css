@@ -1,14 +1,14 @@
 .addon {
     display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     border: 1px solid var(--color-grey);
     border-radius: 6px;
     padding: 1rem;
     margin: 0.8rem 0;
+    text-align: left;
 }
 
-.addon__container {
-    margin-left: 1rem;
-}
 
 .addon__heading {
     margin-bottom: 0.2rem;
