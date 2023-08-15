@@ -4,14 +4,23 @@ import UsageLevel from "./UsageLevel";
 
 interface Props {
   onSelectBilling: (billing: string | undefined) => void;
+  onSelectUsageLevel: (usageLevel: string | undefined) => void;
+  onSelectUsagePricing: (usagePricing: number | undefined) => void;
 }
 
-const BillingCycle = ({ onSelectBilling }: Props) => {
+const BillingCycle = ({
+  onSelectBilling,
+  onSelectUsageLevel,
+  onSelectUsagePricing,
+}: Props) => {
   const [billingCycle, setBillingCycle] = useState<string>();
   const [usageLevel, setUsageLevel] = useState("");
+  const [usagePricing, setUsagePricing] = useState<number | undefined>();
 
   useEffect(() => {
     onSelectBilling(billingCycle);
+    onSelectUsageLevel(usageLevel);
+    onSelectUsagePricing(usagePricing);
   });
 
   return (
@@ -26,6 +35,7 @@ const BillingCycle = ({ onSelectBilling }: Props) => {
         <UsageLevel
           billingCycle={billingCycle}
           onSelectUsageLevel={(usageLevel) => setUsageLevel(usageLevel)}
+          onSelectUsagePricing={(usagePricing) => setUsagePricing(usagePricing)}
         />
 
         <ToggleSwitch onSelectBilling={(billing) => setBillingCycle(billing)} />

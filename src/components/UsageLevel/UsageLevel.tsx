@@ -6,15 +6,22 @@ import "./UsageLevel.css";
 interface Props {
   billingCycle: string | undefined;
   onSelectUsageLevel: (usageLevel: string) => void;
+  onSelectUsagePricing: (usagePricing: number | undefined) => void;
 }
 
-const UsageLevel = ({ billingCycle, onSelectUsageLevel }: Props) => {
+const UsageLevel = ({
+  billingCycle,
+  onSelectUsageLevel,
+  onSelectUsagePricing,
+}: Props) => {
   const [selectedIndex, setSelectedIndex] = useState("");
   const [usageLevel, setUsageLevel] = useState("");
+  const [usagePricing, setUsagePricing] = useState<number>();
 
   useEffect(() => {
     onSelectUsageLevel(usageLevel);
-  }, [usageLevel]);
+    onSelectUsagePricing(usagePricing);
+  }, [usageLevel, usagePricing]);
 
   return (
     <>
@@ -26,6 +33,7 @@ const UsageLevel = ({ billingCycle, onSelectUsageLevel }: Props) => {
             onClick={() => {
               setSelectedIndex(usage.id);
               setUsageLevel(usage.id);
+              setUsagePricing(usage.pricing);
             }}
             className={`usage 
         ${selectedIndex === usage.id ? "usage--selected" : ""}`}
@@ -40,7 +48,6 @@ const UsageLevel = ({ billingCycle, onSelectUsageLevel }: Props) => {
                 {usage.heading}
               </div>
               <div className="step__info">
-                {" "}
                 ${usage.pricing}/{billingCycle === "monthly" ? "mo" : "yr"}
               </div>
               {billingCycle === "yearly" && (

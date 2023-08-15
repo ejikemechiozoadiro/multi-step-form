@@ -11,8 +11,10 @@ interface Props {
 }
 
 const MainContainer = ({ currentStep }: Props) => {
-  const [billingCycle, setBillingCycle] = useState<string>();
-  const [allAddOns, setAllAddOns] = useState<AddOn[] | undefined>();
+  const [billingCycle, setBillingCycle] = useState<string | undefined>();
+  const [usageLevel, setUsageLevel] = useState<string | undefined>();
+  const [usagePricing, setUsagePricing] = useState<number | undefined>();
+  const [addOns, setAddOns] = useState<AddOn[] | undefined>();
 
   return (
     <>
@@ -22,15 +24,26 @@ const MainContainer = ({ currentStep }: Props) => {
           {currentStep === "step2" && (
             <BillingCycle
               onSelectBilling={(billing) => setBillingCycle(billing)}
+              onSelectUsageLevel={(usageLevel) => setUsageLevel(usageLevel)}
+              onSelectUsagePricing={(usagePricing) =>
+                setUsagePricing(usagePricing)
+              }
             />
           )}
           {currentStep === "step3" && (
             <AddOns
-              onSelectAddons={(allAddOns) => setAllAddOns(allAddOns)}
+              onSelectAddons={(allAddOns) => setAddOns(allAddOns)}
               billingCycle={billingCycle}
             />
           )}
-          {currentStep === "step4" && <Summary />}
+          {currentStep === "step4" && usageLevel && billingCycle && (
+            <Summary
+              usageLevel={usageLevel}
+              billingCycle={billingCycle}
+              usagePricing={usagePricing}
+              addOns={addOns}
+            />
+          )}
         </div>
       </div>
       <div className="white__space"></div>

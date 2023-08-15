@@ -1,13 +1,18 @@
 import { AddOn } from "./AddOns/AddOns";
 
 interface Props {
-  usageLevel: string;
-  billingCycle: string;
-  usagePricing: number;
-  addOns: AddOn;
+  usageLevel: string | undefined;
+  billingCycle: string | undefined;
+  usagePricing: number | undefined;
+  addOns: AddOn[] | undefined;
 }
 
-const Summary = () => {
+const Summary = ({ usageLevel, billingCycle, usagePricing, addOns }: Props) => {
+  const totalPriceOfAddOns =
+    addOns && addOns.reduce((total, addOn) => total + addOn.pricing, 0);
+
+  const billingCycleCheck = billingCycle === "monthly" ? "mo" : "yr";
+
   return (
     <>
       <form>
@@ -17,7 +22,39 @@ const Summary = () => {
           Double-check everything looks OK before confirming.
         </p>
         <div>
-          <p></p>
+          <div>
+            <span>
+              <div className="step__heading">
+                {usageLevel} (
+                {billingCycle === "monthly" ? "Monthly" : "Yearly"})
+              </div>
+              <a className="step__info">Change</a>
+            </span>
+            <span className="step__heading">
+              {usagePricing}/{billingCycleCheck}
+            </span>
+          </div>
+
+          <div>
+            {addOns &&
+              addOns.map((addOn) => (
+                <div>
+                  <span className="step__info">{addOn.heading}</span>
+                  <span className="step__heading">
+                    +${addOn.pricing}/{billingCycleCheck}
+                  </span>
+                </div>
+              ))}
+          </div>
+        </div>
+
+        <div>
+          <span className="step__info">
+            Total (per {billingCycle === "monthly" ? "month" : "year"})
+          </span>
+          <span className="color-primary">
+            +${totalPriceOfAddOns}/{billingCycleCheck}
+          </span>
         </div>
       </form>
     </>
