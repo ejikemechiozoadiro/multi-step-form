@@ -8,14 +8,14 @@ export const usageMonthly = [
       id: "arcade",
       img: { src: arcade, alt: "arcade" },
       heading: "Arcade",
-      info: "$9/mo",
+      pricing: 9,
     },
 
     {
       id: "advanced",
       img: { src: advanced, alt: "advanced" },
       heading: "Advanced",
-      info: "$12/mo",
+      pricing: 12,
       free: "2 months free",
     },
 
@@ -23,7 +23,7 @@ export const usageMonthly = [
       id: "pro",
       img: { src: pro, alt: "pro" },
       heading: "Pro",
-      info: "$15/mo",
+      pricing: 15,
       free: "2 months free",
     },
   ];

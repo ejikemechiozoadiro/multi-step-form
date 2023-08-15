@@ -1,4 +1,4 @@
-.usage__container {
+.usage {
     display: flex;
     border: 1px solid var(--color-grey);
     border-radius: 6px;
@@ -7,7 +7,7 @@
     cursor: pointer;
 }
 
-.usage {
+.usage__container {
     margin-left: 1rem;
 }
 
@@ -16,7 +16,7 @@
     font-weight: 600;
 }
 
-.usage__selected {
+.usage--selected {
     background: var(--color-lightgrey);
     border: 1px solid var(--color-primary);
 }

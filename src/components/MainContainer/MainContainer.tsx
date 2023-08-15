@@ -4,6 +4,7 @@ import BillingCycle from "../BillingCycle";
 import PersonalInfo from "../PersonalInfo";
 import "./MainContainer.css";
 import { AddOn } from "../AddOns/AddOns";
+import Summary from "../Summary";
 
 interface Props {
   currentStep: string;
@@ -29,6 +30,7 @@ const MainContainer = ({ currentStep }: Props) => {
               billingCycle={billingCycle}
             />
           )}
+          {currentStep === "step4" && <Summary />}
         </div>
       </div>
       <div className="white__space"></div>

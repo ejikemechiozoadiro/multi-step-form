@@ -24,7 +24,7 @@ const BillingCycle = ({ onSelectBilling }: Props) => {
         </p>
 
         <UsageLevel
-          billing={billingCycle}
+          billingCycle={billingCycle}
           onSelectUsageLevel={(usageLevel) => setUsageLevel(usageLevel)}
         />
 

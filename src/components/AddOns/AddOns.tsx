@@ -6,7 +6,7 @@ import "./AddOns.css";
 export interface AddOn {
   id: string;
   heading: string;
-  pricing: string;
+  pricing: number;
 }
 
 interface Props {
@@ -47,7 +47,7 @@ const AddOns = ({ billingCycle, onSelectAddons }: Props) => {
           (addon) => (
             <div
               className={`addon ${selectedAddOns.map((item) =>
-                item.id === addon.id ? "addon__selected" : ""
+                item.id === addon.id ? "addon--selected" : ""
               )}`}
               key={addon.id}
               id={addon.id}
@@ -65,7 +65,9 @@ const AddOns = ({ billingCycle, onSelectAddons }: Props) => {
                 </div>
                 <div className="step__info addon__info">{addon.info}</div>
               </div>
-              <span className="step__heading">{addon.pricing}</span>
+              <span className="step__heading">
+                +${addon.pricing}/{billingCycle === "monthly" ? "mo" : "yr"}
+              </span>
             </div>
           )
         )}

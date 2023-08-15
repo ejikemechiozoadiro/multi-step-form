@@ -8,7 +8,7 @@ export const usageYearly = [
     id: "arcade",
     img: { src: arcade, alt: "arcade" },
     heading: "Arcade",
-    info: "$9/yr",
+    pricing: 90,
     free: "2 months free",
   },
 
@@ -16,7 +16,7 @@ export const usageYearly = [
     id: "advanced",
     img: { src: advanced, alt: "advanced" },
     heading: "Advanced",
-    info: "$120/yr",
+    pricing: 120,
     free: "2 months free",
   },
 
@@ -24,7 +24,7 @@ export const usageYearly = [
     id: "pro",
     img: { src: pro, alt: "pro" },
     heading: "Pro",
-    info: "$15/yr",
+    pricing: 150,
     free: "2 months free",
   },
 ];
