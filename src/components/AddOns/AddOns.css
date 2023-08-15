@@ -1,0 +1,21 @@
+.addon {
+    display: flex;
+    border: 1px solid var(--color-grey);
+    border-radius: 6px;
+    padding: 1rem;
+    margin: 0.8rem 0;
+}
+
+.addon__container {
+    margin-left: 1rem;
+}
+
+.addon__heading {
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
+.addon__selected {
+    background: var(--color-lightgrey);
+    border: 1px solid var(--color-primary);
+}

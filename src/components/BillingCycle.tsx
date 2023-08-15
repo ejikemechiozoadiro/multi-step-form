@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ToggleSwitch from "./ToggleSwitch";
 import UsageLevel from "./UsageLevel";
 
-const BillingCycle = () => {
+interface Props {
+  onSelectBilling: (billing: string | undefined) => void;
+}
+
+const BillingCycle = ({ onSelectBilling }: Props) => {
   const [billingCycle, setBillingCycle] = useState<string>();
   const [usageLevel, setUsageLevel] = useState("");
+
+  useEffect(() => {
+    onSelectBilling(billingCycle);
+  });
 
   return (
     <>
