@@ -32,7 +32,6 @@ body {
         border-radius: 12px;
         display: flex;
         justify-content: center;
-        align-items: center;
         background: var(--color-white);
         width: 75vw;
         height: 70vh;

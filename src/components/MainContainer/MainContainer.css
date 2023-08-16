@@ -9,8 +9,14 @@
 }
 
 @media screen and (min-width: 768px) {
+  .main-container {
+    width: 450px;
+  }
+
   .main-content {
     margin: 0;
+    padding: 0 1.5rem;
+
   }
 }
 

@@ -36,7 +36,7 @@ const MainContainer = ({ currentStep }: Props) => {
               billingCycle={billingCycle}
             />
           )}
-          {currentStep === "step4" && usageLevel && billingCycle && (
+          {currentStep === "step4" && (
             <Summary
               usageLevel={usageLevel}
               billingCycle={billingCycle}
