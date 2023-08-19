@@ -54,6 +54,7 @@ const AddOns = ({ billingCycle, onSelectAddons }: Props) => {
               onClick={() => handleAddOnClick(addon)}
             >
               <input
+                className="addon__checkbox"
                 type="checkbox"
                 id={addon.id}
                 checked={selectedAddOns.some((item) => item.id === addon.id)}
