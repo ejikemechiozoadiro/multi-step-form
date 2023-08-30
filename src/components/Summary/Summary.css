@@ -24,6 +24,10 @@
     cursor: pointer;
 }
 
+.summary__plan a:hover {
+    color: var(--color-secondary);
+}
+
 .summary__plan-heading {
     text-transform: capitalize;
     margin-bottom: 0.3rem;
