@@ -4,7 +4,7 @@ import MainContainer from "./components/MainContainer";
 import Nav from "./components/Nav";
 
 function App() {
-  const [currentStep, setCurrentStep] = useState("");
+  const [currentStep, setCurrentStep] = useState<number>();
 
   return (
     <>

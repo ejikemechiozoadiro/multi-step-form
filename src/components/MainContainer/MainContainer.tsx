@@ -7,21 +7,26 @@ import { AddOn } from "../AddOns/AddOns";
 import Summary from "../Summary";
 
 interface Props {
-  currentStep: string;
+  currentStep: number | undefined;
+  onNextStep: (nextStep: number) => void;
 }
 
-const MainContainer = ({ currentStep }: Props) => {
+const MainContainer = ({ currentStep, onNextStep }: Props) => {
   const [billingCycle, setBillingCycle] = useState<string | undefined>();
   const [usageLevel, setUsageLevel] = useState<string | undefined>();
   const [usagePricing, setUsagePricing] = useState<number | undefined>();
   const [addOns, setAddOns] = useState<AddOn[] | undefined>();
 
+  const handleNext = (isValid: boolean) => {
+    if (isValid) onNextStep(2);
+  };
+
   return (
     <>
       <div className="main-container">
         <div className="main-content">
-          {currentStep === "step1" && <PersonalInfo />}
-          {currentStep === "step2" && (
+          {currentStep === 1 && <PersonalInfo onValid={() => handleNext} />}
+          {currentStep === 2 && (
             <BillingCycle
               onSelectBilling={(billing) => setBillingCycle(billing)}
               onSelectUsageLevel={(usageLevel) => setUsageLevel(usageLevel)}
@@ -30,13 +35,13 @@ const MainContainer = ({ currentStep }: Props) => {
               }
             />
           )}
-          {currentStep === "step3" && (
+          {currentStep === 3 && (
             <AddOns
               onSelectAddons={(allAddOns) => setAddOns(allAddOns)}
               billingCycle={billingCycle}
             />
           )}
-          {currentStep === "step4" && (
+          {currentStep === 4 && (
             <Summary
               usageLevel={usageLevel}
               billingCycle={billingCycle}

@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import "./Nav.css";
 
 interface Props {
-  onSelectStep: (step: string) => void;
+  onSelectStep: (step: number) => void;
 }
 const Nav = ({ onSelectStep }: Props) => {
-  const [step, setStep] = useState("step1");
+  const [step, setStep] = useState(1);
 
   useEffect(() => {
     onSelectStep(step);
   }, [step]);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStep(e.target.value);
+    setStep(parseInt(e.target.value));
   };
 
   return (
@@ -20,7 +20,7 @@ const Nav = ({ onSelectStep }: Props) => {
       <div className="nav">
         <div className="nav__container">
           <label
-            className={`step ${step === "step1" ? "selected" : ""}`}
+            className={`step ${step === 1 ? "selected" : ""}`}
             htmlFor="step1"
           >
             1
@@ -36,7 +36,7 @@ const Nav = ({ onSelectStep }: Props) => {
           <input
             className="step__radio"
             type="radio"
-            value="step1"
+            value={1}
             name="step"
             id="step1"
             onChange={handleOnChange}
@@ -45,7 +45,7 @@ const Nav = ({ onSelectStep }: Props) => {
 
         <div className="nav__container">
           <label
-            className={`step ${step === "step2" ? "selected" : ""}`}
+            className={`step ${step === 2 ? "selected" : ""}`}
             htmlFor="step2"
           >
             2
@@ -62,7 +62,7 @@ const Nav = ({ onSelectStep }: Props) => {
             className="step__radio"
             type="radio"
             name="step"
-            value="step2"
+            value={2}
             id="step2"
             onChange={handleOnChange}
           />
@@ -70,7 +70,7 @@ const Nav = ({ onSelectStep }: Props) => {
 
         <div className="nav__container">
           <label
-            className={`step ${step === "step3" ? "selected" : ""}`}
+            className={`step ${step === 3 ? "selected" : ""}`}
             htmlFor="step3"
           >
             3
@@ -87,7 +87,7 @@ const Nav = ({ onSelectStep }: Props) => {
             className="step__radio"
             type="radio"
             name="step"
-            value="step3"
+            value={3}
             id="step3"
             onChange={handleOnChange}
           />
@@ -95,7 +95,7 @@ const Nav = ({ onSelectStep }: Props) => {
 
         <div className="nav__container">
           <label
-            className={`step ${step === "step4" ? "selected" : ""}`}
+            className={`step ${step === 4 ? "selected" : ""}`}
             htmlFor="step4"
           >
             4
@@ -112,7 +112,7 @@ const Nav = ({ onSelectStep }: Props) => {
             className="step__radio"
             type="radio"
             name="step"
-            value="step4"
+            value={4}
             id="step4"
             onChange={handleOnChange}
           />

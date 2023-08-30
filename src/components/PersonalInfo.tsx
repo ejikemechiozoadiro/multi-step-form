@@ -2,6 +2,10 @@ import { z } from "zod";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+interface Props {
+  onValid: (onValid: boolean) => void;
+}
+
 const schema = z.object({
   name: z.string().min(1, "This field is required"),
   email: z.string().email("Please enter a valid email"),
@@ -10,11 +14,11 @@ const schema = z.object({
 
 type PersonalInfo = z.infer<typeof schema>;
 
-const PersonalInfo = () => {
+const PersonalInfo = ({ onValid }: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<PersonalInfo>({
     resolver: zodResolver(schema),
   });
@@ -68,7 +72,9 @@ const PersonalInfo = () => {
         />
       </div>
 
-      <button className="btn__next">Next Step</button>
+      <button className="btn__next" onClick={() => onValid(isValid)}>
+        Next Step
+      </button>
     </form>
   );
 };
