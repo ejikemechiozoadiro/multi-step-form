@@ -73,7 +73,6 @@ const AddOns = ({ billingCycle, onSelectAddons }: Props) => {
           )
         )}
 
-        <button className="btn__prev">Go Back</button>
         <button className="btn__next">Next Step</button>
       </form>
     </>

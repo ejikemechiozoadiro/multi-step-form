@@ -4,6 +4,7 @@
     --color-main-background: hsl(217, 100%, 97%);
     --color-primary: hsl(213, 96%, 18%);
     --color-white: hsl(0, 0%, 100%);
+    --color-red: hsl(354, 84%, 57%);
     --color-grey: hsl(0, 0%, 75%);
     --color-lightgrey: hsl(231, 100%, 99%);
     --color-secondary: hsl(243, 100%, 62%);
@@ -34,7 +35,7 @@ body {
         justify-content: center;
         background: var(--color-white);
         width: 75vw;
-        height: 70vh;
+        height: 78vh;
         overflow: hidden;
         padding: 1rem;
         position: relative;
@@ -43,7 +44,8 @@ body {
 
 @media screen and (min-width: 1024px) {
     .app {
-        width: 60vw;
+        max-width: 65vw;
+        width: auto;
     }
 }
 
@@ -61,6 +63,13 @@ body {
 
 .btn__next {
     background: var(--color-primary);
+}
+
+.btn__summary {
+    background: var(--color-secondary);
+}
+
+.btn__next, .btn__summary {
     border: 0;
     border-radius: 5px;
     color: var(--color-white);
@@ -69,10 +78,22 @@ body {
     position: fixed;
     right: 1.2rem;
     bottom: 1rem;
+    cursor: pointer;
+}
+
+.btn__next:hover {
+    background: hsl(213, 72%, 25%);;
 }
 
 @media screen and (min-width: 768px) {
-    .btn {
+    .btn__prev {
         position: absolute;
+        left: 40%;
+        bottom: 0.8rem;
+    }
+
+    .btn__next, .btn__summary {
+        position: absolute;
+        right: 2.5rem;
     }
 }

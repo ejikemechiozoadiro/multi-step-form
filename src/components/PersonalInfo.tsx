@@ -1,53 +1,68 @@
 import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  phone: z.number(),
+  name: z.string().min(1, "This field is required"),
+  email: z.string().email("Please enter a valid email"),
+  phone: z.number({ invalid_type_error: "This field is required" }),
 });
 
 type PersonalInfo = z.infer<typeof schema>;
 
 const PersonalInfo = () => {
-  const { register } = useForm<PersonalInfo>({ resolver: zodResolver(schema) });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<PersonalInfo>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = (data: FieldValues) => console.log(data);
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <h2 className="step__heading">Personal Info</h2>
       <p className="step__info">
         Please provide your name, email address, and phone number
       </p>
-
       <div className="step__container">
-        <label className="step__heading">Name</label>
+        <div className="step__label">
+          <label className="step__heading">Name</label>
+          {errors.name && <p className="step__error">{errors.name?.message}</p>}
+        </div>
         <input
-          required
           {...register("name")}
-          className="step__input"
+          className={`step__input ${errors.name ? "step__error-input" : ""}`}
           placeholder="e.g Stephen King"
           type="text"
         />
       </div>
-
       <div className="step__container">
-        <label className="step__heading">Email Address</label>
+        <div className="step__label">
+          <label className="step__heading">Email Address</label>
+          {errors.email && (
+            <p className="step__error">{errors.email?.message}</p>
+          )}
+        </div>
         <input
-          required
           {...register("email")}
-          className="step__input"
+          className={`step__input ${errors.email ? "step__error-input" : ""}`}
           placeholder="e.g stephenking@lorem.com"
           type="email"
         />
       </div>
-
       <div className="step__container">
-        <label className="step__heading">Phone Number</label>
+        <div className="step__label">
+          <label className="step__heading">Phone Number</label>
+          {errors.phone && (
+            <p className="step__error">{errors.phone?.message}</p>
+          )}
+        </div>
         <input
-          required
-          {...register("phone")}
-          className="step__input"
+          {...register("phone", { valueAsNumber: true })}
+          className={`step__input ${errors.phone ? "step__error-input" : ""}`}
           placeholder="e.g. +1 234 567 890"
           type="number"
         />

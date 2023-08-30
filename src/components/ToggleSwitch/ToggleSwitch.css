@@ -5,7 +5,7 @@
     background: var( --color-lightgrey);
     padding: 1rem 2.5rem;
     border-radius: 10px;
-    margin: 1.5rem 0 1rem;
+    margin: 1rem 0 1rem;
 }
 
 .toggle__switch > label:first-of-type {

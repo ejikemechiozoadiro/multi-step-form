@@ -46,6 +46,7 @@ const MainContainer = ({ currentStep }: Props) => {
           )}
         </div>
       </div>
+      <button className="btn__prev">Go Back</button>
       <div className="white__space"></div>
     </>
   );

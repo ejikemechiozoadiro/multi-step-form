@@ -57,6 +57,8 @@ const Summary = ({ usageLevel, billingCycle, usagePricing, addOns }: Props) => {
               +${totalPriceOfAddOns}/{billingCycleCheck}
             </span>
           </div>
+
+          <button className="btn__summary">Confirm</button>
         </div>
       </form>
     </>
