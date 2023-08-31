@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import "./Nav.css";
 
 interface Props {
-  onSelectStep: (step: number) => void;
+  onSelectStep: (step: number | undefined) => void;
+  currentStep: number | undefined;
 }
-const Nav = ({ onSelectStep }: Props) => {
-  const [step, setStep] = useState(1);
+const Nav = ({ onSelectStep, currentStep }: Props) => {
+  const [step, setStep] = useState<number | undefined>(currentStep);
 
   useEffect(() => {
     onSelectStep(step);
@@ -20,7 +21,7 @@ const Nav = ({ onSelectStep }: Props) => {
       <div className="nav">
         <div className="nav__container">
           <label
-            className={`step ${step === 1 ? "selected" : ""}`}
+            className={`step ${currentStep === 1 ? "selected" : ""}`}
             htmlFor="step1"
           >
             1
@@ -45,7 +46,7 @@ const Nav = ({ onSelectStep }: Props) => {
 
         <div className="nav__container">
           <label
-            className={`step ${step === 2 ? "selected" : ""}`}
+            className={`step ${currentStep === 2 ? "selected" : ""}`}
             htmlFor="step2"
           >
             2
@@ -70,7 +71,7 @@ const Nav = ({ onSelectStep }: Props) => {
 
         <div className="nav__container">
           <label
-            className={`step ${step === 3 ? "selected" : ""}`}
+            className={`step ${currentStep === 3 ? "selected" : ""}`}
             htmlFor="step3"
           >
             3
@@ -95,7 +96,7 @@ const Nav = ({ onSelectStep }: Props) => {
 
         <div className="nav__container">
           <label
-            className={`step ${step === 4 ? "selected" : ""}`}
+            className={`step ${currentStep === 4 ? "selected" : ""}`}
             htmlFor="step4"
           >
             4

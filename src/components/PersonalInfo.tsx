@@ -23,7 +23,10 @@ const PersonalInfo = ({ onValid }: Props) => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FieldValues) => console.log(data);
+  const onSubmit = (data: FieldValues) => {
+    console.log(data);
+    onValid(isValid);
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -72,7 +75,7 @@ const PersonalInfo = ({ onValid }: Props) => {
         />
       </div>
 
-      <button className="btn__next" onClick={() => onValid(isValid)}>
+      <button className="btn__next" type="submit">
         Next Step
       </button>
     </form>

@@ -8,24 +8,34 @@ import Summary from "../Summary";
 
 interface Props {
   currentStep: number | undefined;
-  onNextStep: (nextStep: number) => void;
+  onValidNext: (next: boolean | undefined) => void;
+  onPrevious: (previous: boolean | undefined) => void;
 }
 
-const MainContainer = ({ currentStep, onNextStep }: Props) => {
+const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
   const [billingCycle, setBillingCycle] = useState<string | undefined>();
   const [usageLevel, setUsageLevel] = useState<string | undefined>();
   const [usagePricing, setUsagePricing] = useState<number | undefined>();
   const [addOns, setAddOns] = useState<AddOn[] | undefined>();
+  // const [onNextStep, setNextStep] = useState<number>();
+
+  // useEffect(() => {
+  //   if (onNextStep) onNext(onNextStep);
+  // }, [onNextStep]);
 
   const handleNext = (isValid: boolean) => {
-    if (isValid) onNextStep(2);
+    if (isValid) onValidNext(true);
+  };
+
+  const handlePrevious = () => {
+    onPrevious(true);
   };
 
   return (
     <>
       <div className="main-container">
         <div className="main-content">
-          {currentStep === 1 && <PersonalInfo onValid={() => handleNext} />}
+          {currentStep === 1 && <PersonalInfo onValid={handleNext} />}
           {currentStep === 2 && (
             <BillingCycle
               onSelectBilling={(billing) => setBillingCycle(billing)}
@@ -51,7 +61,11 @@ const MainContainer = ({ currentStep, onNextStep }: Props) => {
           )}
         </div>
       </div>
-      <button className="btn__prev">Go Back</button>
+      {currentStep !== 1 && (
+        <button className="btn__prev" onClick={handlePrevious}>
+          Go Back
+        </button>
+      )}
       <div className="white__space"></div>
     </>
   );
