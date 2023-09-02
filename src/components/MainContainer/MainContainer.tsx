@@ -49,6 +49,7 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
           )}
           {currentStep === 3 && (
             <AddOns
+              addOnsFromMain={addOns}
               onSelectAddons={(allAddOns) => setAddOns(allAddOns)}
               billingCycle={billingCycle}
             />

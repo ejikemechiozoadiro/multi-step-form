@@ -11,12 +11,12 @@ export interface AddOn {
 
 interface Props {
   billingCycle: string | undefined;
+  addOnsFromMain: AddOn[] | undefined;
   onSelectAddons: (allAddons: AddOn[]) => void;
 }
 
-const AddOns = ({ billingCycle, onSelectAddons }: Props) => {
+const AddOns = ({ billingCycle, onSelectAddons, addOnsFromMain }: Props) => {
   const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
-  console.log(selectedAddOns);
 
   useEffect(() => {
     onSelectAddons(selectedAddOns);
@@ -33,6 +33,7 @@ const AddOns = ({ billingCycle, onSelectAddons }: Props) => {
       }
     });
   };
+  console.log(addOnsFromMain);
 
   return (
     <>
@@ -46,7 +47,7 @@ const AddOns = ({ billingCycle, onSelectAddons }: Props) => {
         {(billingCycle === "monthly" ? addOnsMonthly : addOnsYearly).map(
           (addon) => (
             <div
-              className={`addon ${selectedAddOns.map((item) =>
+              className={`addon ${addOnsFromMain?.map((item) =>
                 item.id === addon.id ? "addon--selected" : ""
               )}`}
               key={addon.id}

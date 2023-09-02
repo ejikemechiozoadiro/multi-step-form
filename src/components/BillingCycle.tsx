@@ -23,7 +23,7 @@ const BillingCycle = ({
     onSelectBilling(billingCycle);
     onSelectUsageLevel(usageLevel);
     onSelectUsagePricing(usagePricing);
-  }, []);
+  }, [billingCycle, usageLevel, usagePricing]);
 
   const handleSubmit = (event: FormEvent) => {
     {

@@ -13,6 +13,9 @@ const Summary = ({ usageLevel, billingCycle, usagePricing, addOns }: Props) => {
   const totalPriceOfAddOns =
     addOns && addOns.reduce((total, addOn) => total + addOn.pricing, 0);
 
+  const totalPrice =
+    totalPriceOfAddOns && usagePricing ? totalPriceOfAddOns + usagePricing : "";
+
   const billingCycleCheck = billingCycle === "monthly" ? "mo" : "yr";
 
   return (
@@ -40,7 +43,7 @@ const Summary = ({ usageLevel, billingCycle, usagePricing, addOns }: Props) => {
 
               {addOns &&
                 addOns.map((addOn) => (
-                  <div className="summary__addon">
+                  <div key={addOn.id} className="summary__addon">
                     <span className="step__info">{addOn.heading}</span>
                     <span className="step__heading">
                       +${addOn.pricing}/{billingCycleCheck}
@@ -54,7 +57,7 @@ const Summary = ({ usageLevel, billingCycle, usagePricing, addOns }: Props) => {
               Total (per {billingCycle === "monthly" ? "month" : "year"})
             </span>
             <span className="summary__total-price">
-              +${totalPriceOfAddOns}/{billingCycleCheck}
+              +${totalPrice}/{billingCycleCheck}
             </span>
           </div>
 
