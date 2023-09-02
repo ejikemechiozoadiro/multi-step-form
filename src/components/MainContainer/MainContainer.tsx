@@ -17,11 +17,7 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
   const [usageLevel, setUsageLevel] = useState<string | undefined>();
   const [usagePricing, setUsagePricing] = useState<number | undefined>();
   const [addOns, setAddOns] = useState<AddOn[] | undefined>();
-  // const [onNextStep, setNextStep] = useState<number>();
-
-  // useEffect(() => {
-  //   if (onNextStep) onNext(onNextStep);
-  // }, [onNextStep]);
+  const [personalData, setPersonalData] = useState<PersonalInfo>();
 
   const handleNext = (isValid: boolean) => {
     if (isValid) onValidNext(true);
@@ -35,9 +31,15 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
     <>
       <div className="main-container">
         <div className="main-content">
-          {currentStep === 1 && <PersonalInfo onValid={handleNext} />}
+          {currentStep === 1 && (
+            <PersonalInfo
+              onDataSubmit={(data) => setPersonalData(data)}
+              onValid={handleNext}
+            />
+          )}
           {currentStep === 2 && (
             <BillingCycle
+              onValid={handleNext}
               onSelectBilling={(billing) => setBillingCycle(billing)}
               onSelectUsageLevel={(usageLevel) => setUsageLevel(usageLevel)}
               onSelectUsagePricing={(usagePricing) =>

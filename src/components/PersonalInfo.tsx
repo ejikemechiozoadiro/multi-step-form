@@ -1,9 +1,11 @@
 import { z } from "zod";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 
 interface Props {
   onValid: (onValid: boolean) => void;
+  onDataSubmit: (data: PersonalInfo | undefined) => void;
 }
 
 const schema = z.object({
@@ -14,7 +16,9 @@ const schema = z.object({
 
 type PersonalInfo = z.infer<typeof schema>;
 
-const PersonalInfo = ({ onValid }: Props) => {
+const PersonalInfo = ({ onValid, onDataSubmit }: Props) => {
+  const [personalData, setPersonalData] = useState<PersonalInfo>();
+
   const {
     register,
     handleSubmit,
@@ -23,8 +27,9 @@ const PersonalInfo = ({ onValid }: Props) => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data);
+  const onSubmit = (data: PersonalInfo) => {
+    if (data) setPersonalData(data);
+    onDataSubmit(data);
     onValid(isValid);
   };
 
@@ -41,6 +46,7 @@ const PersonalInfo = ({ onValid }: Props) => {
         </div>
         <input
           {...register("name")}
+          value={personalData?.name}
           className={`step__input ${errors.name ? "step__error-input" : ""}`}
           placeholder="e.g Stephen King"
           type="text"
@@ -55,6 +61,7 @@ const PersonalInfo = ({ onValid }: Props) => {
         </div>
         <input
           {...register("email")}
+          value={personalData?.email}
           className={`step__input ${errors.email ? "step__error-input" : ""}`}
           placeholder="e.g stephenking@lorem.com"
           type="email"
@@ -69,6 +76,7 @@ const PersonalInfo = ({ onValid }: Props) => {
         </div>
         <input
           {...register("phone", { valueAsNumber: true })}
+          value={personalData?.phone}
           className={`step__input ${errors.phone ? "step__error-input" : ""}`}
           placeholder="e.g. +1 234 567 890"
           type="number"

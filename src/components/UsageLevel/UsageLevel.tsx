@@ -36,7 +36,8 @@ const UsageLevel = ({
               setUsagePricing(usage.pricing);
             }}
             className={`usage 
-        ${selectedIndex === usage.id ? "usage--selected" : ""}`}
+              ${selectedIndex === usage.id ? "usage--selected" : ""}
+               `}
           >
             <img
               src={usage.img.src}

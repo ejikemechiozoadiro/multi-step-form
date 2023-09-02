@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import ToggleSwitch from "./ToggleSwitch";
 import UsageLevel from "./UsageLevel";
 
@@ -6,9 +6,11 @@ interface Props {
   onSelectBilling: (billing: string | undefined) => void;
   onSelectUsageLevel: (usageLevel: string | undefined) => void;
   onSelectUsagePricing: (usagePricing: number | undefined) => void;
+  onValid: (onValid: boolean) => void;
 }
 
 const BillingCycle = ({
+  onValid,
   onSelectBilling,
   onSelectUsageLevel,
   onSelectUsagePricing,
@@ -16,16 +18,25 @@ const BillingCycle = ({
   const [billingCycle, setBillingCycle] = useState<string>();
   const [usageLevel, setUsageLevel] = useState("");
   const [usagePricing, setUsagePricing] = useState<number | undefined>();
-
+  // const [validate, setValidate] = useState<boolean | null>(null);
   useEffect(() => {
     onSelectBilling(billingCycle);
     onSelectUsageLevel(usageLevel);
     onSelectUsagePricing(usagePricing);
-  });
+  }, []);
+
+  const handleSubmit = (event: FormEvent) => {
+    {
+      usageLevel && billingCycle && usagePricing
+        ? onValid(true)
+        : onValid(false);
+    }
+    event.preventDefault();
+  };
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2 className="step__heading">Select your plan</h2>
 
         <p className="step__info">
@@ -34,7 +45,9 @@ const BillingCycle = ({
 
         <UsageLevel
           billingCycle={billingCycle}
-          onSelectUsageLevel={(usageLevel) => setUsageLevel(usageLevel)}
+          onSelectUsageLevel={(usageLevel) => {
+            setUsageLevel(usageLevel);
+          }}
           onSelectUsagePricing={(usagePricing) => setUsagePricing(usagePricing)}
         />
 
