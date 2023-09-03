@@ -17,6 +17,7 @@
         flex-direction: column;
         justify-content: start;
         height: -webkit-fill-available;
+        height: 100%;
         color: var(--color-white);
     }
     

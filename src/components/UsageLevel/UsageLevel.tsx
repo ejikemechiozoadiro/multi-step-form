@@ -27,36 +27,36 @@ const UsageLevel = ({
 }: Props) => {
   return (
     <>
-      {(billingCycle === "monthly" ? usageMonthly : usageYearly).map(
-        (usage) => (
-          <div
-            key={usage.id}
-            onClick={() => {
-              setSelectedUsage(usage);
-            }}
-            className={`usage 
-              ${selectedUsage?.id === usage.id ? "usage--selected" : ""}
-              `}
-          >
-            <img
-              src={usage.img.src}
-              alt={usage.img.alt}
-              className="usage__image"
-            />
-            <div className="usage__container">
-              <div className="step__heading usage__heading">
-                {usage.heading}
+      <div className="usage__all">
+        {(billingCycle === "monthly" ? usageMonthly : usageYearly).map(
+          (usage) => (
+            <div
+              key={usage.id}
+              onClick={() => {
+                setSelectedUsage(usage);
+              }}
+              className={`usage
+                ${selectedUsage?.id === usage.id ? "usage--selected" : ""}
+                `}
+            >
+              <img
+                src={usage.img.src}
+                alt={usage.img.alt}
+                className="usage__image"
+              />
+              <div className="usage__container">
+                <div className=" usage__heading">{usage.heading}</div>
+                <div className="usage__info">
+                  ${usage.pricing}/{billingCycle === "monthly" ? "mo" : "yr"}
+                </div>
+                {billingCycle === "yearly" && (
+                  <div className="step__heading">{usage.free}</div>
+                )}
               </div>
-              <div className="step__info">
-                ${usage.pricing}/{billingCycle === "monthly" ? "mo" : "yr"}
-              </div>
-              {billingCycle === "yearly" && (
-                <div className="step__heading">{usage.free}</div>
-              )}
             </div>
-          </div>
-        )
-      )}
+          )
+        )}
+      </div>
     </>
   );
 };
