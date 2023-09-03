@@ -5,6 +5,7 @@ import PersonalInfo from "../PersonalInfo";
 import "./MainContainer.css";
 import { AddOn } from "../AddOns/AddOns";
 import Summary from "../Summary";
+import { Usage } from "../UsageLevel/UsageLevel";
 
 interface Props {
   currentStep: number | undefined;
@@ -13,11 +14,13 @@ interface Props {
 }
 
 const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
+  const [personalData, setPersonalData] = useState<PersonalInfo>();
   const [billingCycle, setBillingCycle] = useState<string | undefined>();
   const [usageLevel, setUsageLevel] = useState<string | undefined>();
   const [usagePricing, setUsagePricing] = useState<number | undefined>();
   const [addOns, setAddOns] = useState<AddOn[] | undefined>();
-  const [personalData, setPersonalData] = useState<PersonalInfo>();
+  const [selectedUsage, setSelectedUsage] = useState<Usage>();
+  console.log(selectedUsage);
 
   const handleNext = (isValid: boolean) => {
     if (isValid) onValidNext(true);
@@ -46,6 +49,8 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
               onSelectUsagePricing={(usagePricing) =>
                 setUsagePricing(usagePricing)
               }
+              selectedUsage={selectedUsage}
+              setSelectedUsage={setSelectedUsage}
             />
           )}
           {currentStep === 3 && (

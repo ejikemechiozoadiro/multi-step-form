@@ -5,7 +5,7 @@ import pro from "../assets/icon-pro.svg";
 
 export const usageYearly = [
   {
-    id: "arcade",
+    id: "arcade-yearly",
     img: { src: arcade, alt: "arcade" },
     heading: "Arcade",
     pricing: 90,
@@ -13,7 +13,7 @@ export const usageYearly = [
   },
 
   {
-    id: "advanced",
+    id: "advanced-yearly",
     img: { src: advanced, alt: "advanced" },
     heading: "Advanced",
     pricing: 120,
@@ -21,7 +21,7 @@ export const usageYearly = [
   },
 
   {
-    id: "pro",
+    id: "pro-yearly",
     img: { src: pro, alt: "pro" },
     heading: "Pro",
     pricing: 150,

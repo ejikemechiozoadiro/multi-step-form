@@ -1,12 +1,15 @@
 import { FormEvent, useEffect, useState } from "react";
 import ToggleSwitch from "./ToggleSwitch";
 import UsageLevel from "./UsageLevel";
+import { Usage } from "./UsageLevel/UsageLevel";
 
 interface Props {
   onSelectBilling: (billing: string | undefined) => void;
   onSelectUsageLevel: (usageLevel: string | undefined) => void;
   onSelectUsagePricing: (usagePricing: number | undefined) => void;
   onValid: (onValid: boolean) => void;
+  selectedUsage: Usage | undefined;
+  setSelectedUsage: React.Dispatch<React.SetStateAction<Usage | undefined>>;
 }
 
 const BillingCycle = ({
@@ -14,6 +17,8 @@ const BillingCycle = ({
   onSelectBilling,
   onSelectUsageLevel,
   onSelectUsagePricing,
+  selectedUsage,
+  setSelectedUsage,
 }: Props) => {
   const [billingCycle, setBillingCycle] = useState<string>();
   const [usageLevel, setUsageLevel] = useState("");
@@ -26,9 +31,17 @@ const BillingCycle = ({
     onSelectUsagePricing(usagePricing);
   }, [billingCycle, usageLevel, usagePricing]);
 
+  //To check if the last word in ID (which is either monthly
+  //or yearly) matches with the billingCycle (which can be
+  //either monthly or yearly.
+  const lastWordInId = selectedUsage?.id.split("-").pop();
+
   const handleSubmit = (event: FormEvent) => {
     {
-      usageLevel && billingCycle && usagePricing
+      usageLevel &&
+      billingCycle &&
+      usagePricing &&
+      lastWordInId === billingCycle
         ? onValid(true)
         : onValid(false);
     }
@@ -49,6 +62,8 @@ const BillingCycle = ({
           onSelectUsageLevel={(usageLevel) => {
             setUsageLevel(usageLevel);
           }}
+          selectedUsage={selectedUsage}
+          setSelectedUsage={setSelectedUsage}
           onSelectUsagePricing={(usagePricing) => setUsagePricing(usagePricing)}
         />
 

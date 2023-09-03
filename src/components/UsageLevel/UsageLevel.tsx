@@ -3,16 +3,31 @@ import { usageMonthly } from "../../data/UsageMonthly";
 import { usageYearly } from "../../data/usageYearly";
 import "./UsageLevel.css";
 
+export interface Usage {
+  id: string;
+  heading: string;
+  pricing: number;
+  img: {
+    src: string;
+    alt: string;
+  };
+  free: string;
+}
+
 interface Props {
   billingCycle: string | undefined;
   onSelectUsageLevel: (usageLevel: string) => void;
   onSelectUsagePricing: (usagePricing: number | undefined) => void;
+  selectedUsage: Usage | undefined;
+  setSelectedUsage: React.Dispatch<React.SetStateAction<Usage | undefined>>;
 }
 
 const UsageLevel = ({
   billingCycle,
   onSelectUsageLevel,
   onSelectUsagePricing,
+  selectedUsage,
+  setSelectedUsage,
 }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState("");
   const [usageLevel, setUsageLevel] = useState("");
@@ -29,15 +44,15 @@ const UsageLevel = ({
         (usage) => (
           <div
             key={usage.id}
-            id={usage.id}
             onClick={() => {
               setSelectedIndex(usage.id);
-              setUsageLevel(usage.id);
+              setUsageLevel(usage.heading);
               setUsagePricing(usage.pricing);
+              setSelectedUsage(usage);
             }}
             className={`usage 
-              ${selectedIndex === usage.id ? "usage--selected" : ""}
-               `}
+              ${selectedUsage?.id === usage.id ? "usage--selected" : ""}
+              `}
           >
             <img
               src={usage.img.src}

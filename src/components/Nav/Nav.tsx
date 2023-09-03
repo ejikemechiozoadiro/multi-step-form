@@ -4,8 +4,6 @@ import "./Nav.css";
 interface Props {
   onSelectStep: (step: number | undefined) => void;
   currentStep: number | undefined;
-  // onNext: boolean | undefined;
-  // onPrev: boolean | undefined;
 }
 const Nav = ({ onSelectStep, currentStep }: Props) => {
   const [step, setStep] = useState<number | undefined>(currentStep);
@@ -13,11 +11,6 @@ const Nav = ({ onSelectStep, currentStep }: Props) => {
   useEffect(() => {
     onSelectStep(step);
   }, [step]);
-
-  // useEffect(() => {
-  //   if (step && onNext) setStep(step + 1);
-  //   if (step && onPrev) setStep(step - 1);
-  // }, [onNext, onPrev]);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.type === "radio") setStep(parseInt(e.target.value));
