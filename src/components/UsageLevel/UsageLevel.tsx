@@ -16,27 +16,19 @@ export interface Usage {
 
 interface Props {
   billingCycle: string | undefined;
-  onSelectUsageLevel: (usageLevel: string) => void;
-  onSelectUsagePricing: (usagePricing: number | undefined) => void;
   selectedUsage: Usage | undefined;
   setSelectedUsage: React.Dispatch<React.SetStateAction<Usage | undefined>>;
 }
 
 const UsageLevel = ({
   billingCycle,
-  onSelectUsageLevel,
-  onSelectUsagePricing,
+
   selectedUsage,
   setSelectedUsage,
 }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState("");
   const [usageLevel, setUsageLevel] = useState("");
   const [usagePricing, setUsagePricing] = useState<number>();
-
-  useEffect(() => {
-    onSelectUsageLevel(usageLevel);
-    onSelectUsagePricing(usagePricing);
-  }, [usageLevel, usagePricing]);
 
   return (
     <>
