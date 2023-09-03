@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent } from "react";
 import { addOnsMonthly } from "../../data/AddOnsMonthly";
 import { addOnsYearly } from "../../data/AddOnsYearly";
 import "./AddOns.css";
@@ -12,54 +12,73 @@ export interface AddOn {
 interface Props {
   billingCycle: string | undefined;
   addOnsFromMain: AddOn[] | undefined;
-  onSelectAddons: (allAddons: AddOn[]) => void;
+  // onSelectAddons: (allAddons: AddOn[]) => void;
+  onValid: (onValid: boolean) => void;
+  selectedAddOns: AddOn[] | undefined;
+  setSelectedAddOns: React.Dispatch<React.SetStateAction<AddOn[] | undefined>>;
 }
 
-const AddOns = ({ billingCycle, onSelectAddons, addOnsFromMain }: Props) => {
-  const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
+const AddOns = ({
+  billingCycle,
+  // onSelectAddons,
+  onValid,
+  selectedAddOns,
+  setSelectedAddOns,
+}: Props) => {
+  // const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
 
-  useEffect(() => {
-    onSelectAddons(selectedAddOns);
-  }, [selectedAddOns]);
+  // useEffect(() => {
+  //   onSelectAddons(selectedAddOns);
+  // }, [selectedAddOns]);
 
-  const handleAddOnClick = (addon: AddOn) => {
-    setSelectedAddOns((allAddOns) => {
-      if (allAddOns.some((item) => item.id === addon.id)) {
-        // If addon is already selected, remove it from the list
-        return allAddOns.filter((item) => item.id !== addon.id);
-      } else {
-        // Otherwise, add to the list
-        return [...allAddOns, addon];
-      }
-    });
+  const handleCheck = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    addon: AddOn
+  ) => {
+    if (e.target.checked) {
+      setSelectedAddOns([...(selectedAddOns || []), addon]);
+    } else {
+      setSelectedAddOns((all) => all?.filter((item) => item.id !== addon.id));
+    }
   };
-  console.log(addOnsFromMain);
+
+  const handleSubmit = (event: FormEvent) => {
+    {
+      selectedAddOns ? onValid(true) : onValid(false);
+    }
+    event.preventDefault();
+  };
 
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2 className="step__heading">Pick add-ons</h2>
 
         <p className="step__info">
-          Add-ons help enhance your gaming experience.{" "}
+          Add-ons help enhance your gaming experience.
         </p>
 
         {(billingCycle === "monthly" ? addOnsMonthly : addOnsYearly).map(
           (addon) => (
-            <div
-              className={`addon ${addOnsFromMain?.map((item) =>
-                item.id === addon.id ? "addon--selected" : ""
-              )}`}
+            <label
+              htmlFor={addon.id}
+              className={`addon ${
+                selectedAddOns?.some((item) => item.id === addon.id)
+                  ? "addon--selected"
+                  : ""
+              } `}
               key={addon.id}
-              id={addon.id}
-              onClick={() => handleAddOnClick(addon)}
             >
               <input
                 className="addon__checkbox"
                 type="checkbox"
                 id={addon.id}
-                checked={selectedAddOns.some((item) => item.id === addon.id)}
-                readOnly
+                checked={
+                  selectedAddOns
+                    ? selectedAddOns?.some((item) => item.id === addon.id)
+                    : false
+                }
+                onChange={(e) => handleCheck(e, addon)}
               />
               <div className="addon__container">
                 <div className="step__heading addon__heading">
@@ -70,7 +89,7 @@ const AddOns = ({ billingCycle, onSelectAddons, addOnsFromMain }: Props) => {
               <span className="step__heading">
                 +${addon.pricing}/{billingCycle === "monthly" ? "mo" : "yr"}
               </span>
-            </div>
+            </label>
           )
         )}
 

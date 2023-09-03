@@ -33,6 +33,7 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
         <div className="main-content">
           {currentStep === 1 && (
             <PersonalInfo
+              onData={personalData}
               onDataSubmit={(data) => setPersonalData(data)}
               onValid={handleNext}
             />
@@ -49,9 +50,12 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
           )}
           {currentStep === 3 && (
             <AddOns
+              onValid={handleNext}
               addOnsFromMain={addOns}
-              onSelectAddons={(allAddOns) => setAddOns(allAddOns)}
+              // onSelectAddons={(allAddOns) => setAddOns(allAddOns)}
               billingCycle={billingCycle}
+              selectedAddOns={addOns}
+              setSelectedAddOns={setAddOns}
             />
           )}
           {currentStep === 4 && (

@@ -19,6 +19,7 @@ const BillingCycle = ({
   const [usageLevel, setUsageLevel] = useState("");
   const [usagePricing, setUsagePricing] = useState<number | undefined>();
   // const [validate, setValidate] = useState<boolean | null>(null);
+
   useEffect(() => {
     onSelectBilling(billingCycle);
     onSelectUsageLevel(usageLevel);

@@ -4,6 +4,8 @@ import "./Nav.css";
 interface Props {
   onSelectStep: (step: number | undefined) => void;
   currentStep: number | undefined;
+  // onNext: boolean | undefined;
+  // onPrev: boolean | undefined;
 }
 const Nav = ({ onSelectStep, currentStep }: Props) => {
   const [step, setStep] = useState<number | undefined>(currentStep);
@@ -12,13 +14,18 @@ const Nav = ({ onSelectStep, currentStep }: Props) => {
     onSelectStep(step);
   }, [step]);
 
+  // useEffect(() => {
+  //   if (step && onNext) setStep(step + 1);
+  //   if (step && onPrev) setStep(step - 1);
+  // }, [onNext, onPrev]);
+
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStep(parseInt(e.target.value));
+    if (e.target.type === "radio") setStep(parseInt(e.target.value));
   };
 
   return (
     <>
-      <div className="nav">
+      <div className="nav" onChange={handleOnChange}>
         <div className="nav__container">
           <label
             className={`step ${currentStep === 1 ? "selected" : ""}`}
@@ -40,7 +47,6 @@ const Nav = ({ onSelectStep, currentStep }: Props) => {
             value={1}
             name="step"
             id="step1"
-            onChange={handleOnChange}
           />
         </div>
 
@@ -65,7 +71,6 @@ const Nav = ({ onSelectStep, currentStep }: Props) => {
             name="step"
             value={2}
             id="step2"
-            onChange={handleOnChange}
           />
         </div>
 
@@ -90,7 +95,6 @@ const Nav = ({ onSelectStep, currentStep }: Props) => {
             name="step"
             value={3}
             id="step3"
-            onChange={handleOnChange}
           />
         </div>
 
@@ -115,7 +119,6 @@ const Nav = ({ onSelectStep, currentStep }: Props) => {
             name="step"
             value={4}
             id="step4"
-            onChange={handleOnChange}
           />
         </div>
       </div>

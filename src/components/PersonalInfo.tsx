@@ -1,11 +1,11 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 
 interface Props {
   onValid: (onValid: boolean) => void;
   onDataSubmit: (data: PersonalInfo | undefined) => void;
+  onData: PersonalInfo | undefined;
 }
 
 const schema = z.object({
@@ -16,8 +16,8 @@ const schema = z.object({
 
 type PersonalInfo = z.infer<typeof schema>;
 
-const PersonalInfo = ({ onValid, onDataSubmit }: Props) => {
-  const [personalData, setPersonalData] = useState<PersonalInfo>();
+const PersonalInfo = ({ onValid, onDataSubmit, onData }: Props) => {
+  // const [personalData, setPersonalData] = useState<PersonalInfo>();
 
   const {
     register,
@@ -28,9 +28,11 @@ const PersonalInfo = ({ onValid, onDataSubmit }: Props) => {
   });
 
   const onSubmit = (data: PersonalInfo) => {
-    if (data) setPersonalData(data);
-    onDataSubmit(data);
-    onValid(isValid);
+    if (data) {
+      // setPersonalData(data);
+      onDataSubmit(data);
+      onValid(isValid);
+    }
   };
 
   return (
@@ -46,7 +48,7 @@ const PersonalInfo = ({ onValid, onDataSubmit }: Props) => {
         </div>
         <input
           {...register("name")}
-          value={personalData?.name}
+          value={onData?.name}
           className={`step__input ${errors.name ? "step__error-input" : ""}`}
           placeholder="e.g Stephen King"
           type="text"
@@ -61,7 +63,7 @@ const PersonalInfo = ({ onValid, onDataSubmit }: Props) => {
         </div>
         <input
           {...register("email")}
-          value={personalData?.email}
+          value={onData?.email}
           className={`step__input ${errors.email ? "step__error-input" : ""}`}
           placeholder="e.g stephenking@lorem.com"
           type="email"
@@ -76,7 +78,7 @@ const PersonalInfo = ({ onValid, onDataSubmit }: Props) => {
         </div>
         <input
           {...register("phone", { valueAsNumber: true })}
-          value={personalData?.phone}
+          value={onData?.phone}
           className={`step__input ${errors.phone ? "step__error-input" : ""}`}
           placeholder="e.g. +1 234 567 890"
           type="number"

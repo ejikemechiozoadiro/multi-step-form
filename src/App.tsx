@@ -15,13 +15,13 @@ function App() {
           currentStep={currentStep}
         />
         <MainContainer
-          onValidNext={(valid) =>
-            setCurrentStep(valid && currentStep ? currentStep + 1 : currentStep)
+          onValidNext={(next) =>
+            next && currentStep ? setCurrentStep(currentStep + 1) : currentStep
           }
           onPrevious={(previous) =>
-            setCurrentStep(
-              previous && currentStep ? currentStep - 1 : currentStep
-            )
+            previous && currentStep
+              ? setCurrentStep(currentStep - 1)
+              : currentStep
           }
           currentStep={currentStep}
         />
