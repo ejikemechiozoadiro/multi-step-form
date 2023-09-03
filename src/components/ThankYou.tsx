@@ -13,7 +13,7 @@ const ThankYou = () => {
         </p>
         <p className="thankyou__text">
           Made with love by{" "}
-          <a target="_blank" href="linktr.ee/chiozoadiro">
+          <a target="_blank" href="https://linktr.ee/chiozoadiro">
             Chiozoadiro
           </a>
         </p>
