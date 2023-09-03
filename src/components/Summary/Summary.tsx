@@ -1,20 +1,24 @@
 import { AddOn } from "../AddOns/AddOns";
 import "./Summary.css";
 import straightLine from "../../assets/icon-straight-line.png";
+import { Usage } from "../UsageLevel/UsageLevel";
 
 interface Props {
-  usageLevel: string | undefined;
+  // usageLevel: string | undefined;
+  selectedUsage: Usage | undefined;
   billingCycle: string | undefined;
-  usagePricing: number | undefined;
+  // usagePricing: number | undefined;
   addOns: AddOn[] | undefined;
 }
 
-const Summary = ({ usageLevel, billingCycle, usagePricing, addOns }: Props) => {
+const Summary = ({ billingCycle, addOns, selectedUsage }: Props) => {
   const totalPriceOfAddOns =
     addOns && addOns.reduce((total, addOn) => total + addOn.pricing, 0);
 
   const totalPrice =
-    totalPriceOfAddOns && usagePricing ? totalPriceOfAddOns + usagePricing : "";
+    totalPriceOfAddOns && selectedUsage?.pricing
+      ? totalPriceOfAddOns + selectedUsage.pricing
+      : "";
 
   const billingCycleCheck = billingCycle === "monthly" ? "mo" : "yr";
 
@@ -30,12 +34,12 @@ const Summary = ({ usageLevel, billingCycle, usagePricing, addOns }: Props) => {
             <div className="summary__plan">
               <span>
                 <div className="step__heading summary__plan-heading">
-                  {usageLevel} ({billingCycle})
+                  {selectedUsage?.heading} ({billingCycle})
                 </div>
                 <a className="step__info">Change</a>
               </span>
               <span className="step__heading">
-                ${usagePricing}/{billingCycleCheck}
+                ${selectedUsage?.pricing}/{billingCycleCheck}
               </span>
             </div>
             <div>

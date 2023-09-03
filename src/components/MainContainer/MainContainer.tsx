@@ -16,12 +16,13 @@ interface Props {
 const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
   const [personalData, setPersonalData] = useState<PersonalInfo>();
   // const [billingCycle, setBillingCycle] = useState<string | undefined>();
-  const [usageLevel, setUsageLevel] = useState<string | undefined>();
-  const [usagePricing, setUsagePricing] = useState<number | undefined>();
+  // const [usageLevel, setUsageLevel] = useState<string | undefined>();
+  // const [usagePricing, setUsagePricing] = useState<number | undefined>();
   const [addOns, setAddOns] = useState<AddOn[] | undefined>();
   const [selectedUsage, setSelectedUsage] = useState<Usage>();
   const [billingCycle, setBillingCycle] = useState<string>();
   console.log(selectedUsage);
+  console.log(billingCycle);
 
   const handleNext = (isValid: boolean) => {
     if (isValid) onValidNext(true);
@@ -46,10 +47,10 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
             <BillingCycle
               onValid={handleNext}
               // onSelectBilling={(billing) => setBillingCycle(billing)}
-              onSelectUsageLevel={(usageLevel) => setUsageLevel(usageLevel)}
-              onSelectUsagePricing={(usagePricing) =>
-                setUsagePricing(usagePricing)
-              }
+              // onSelectUsageLevel={(usageLevel) => setUsageLevel(usageLevel)}
+              // onSelectUsagePricing={(usagePricing) =>
+              // setUsagePricing(usagePricing)
+              // }
               selectedUsage={selectedUsage}
               setSelectedUsage={setSelectedUsage}
               billingCycle={billingCycle}
@@ -68,9 +69,10 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
           )}
           {currentStep === 4 && (
             <Summary
-              usageLevel={usageLevel}
+              // usageLevel={usageLevel}
+              selectedUsage={selectedUsage}
               billingCycle={billingCycle}
-              usagePricing={usagePricing}
+              // usagePricing={usagePricing}
               addOns={addOns}
             />
           )}
