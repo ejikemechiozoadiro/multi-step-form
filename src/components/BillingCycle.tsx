@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent } from "react";
 import ToggleSwitch from "./ToggleSwitch";
 import UsageLevel from "./UsageLevel";
 import { Usage } from "./UsageLevel/UsageLevel";
@@ -18,9 +18,9 @@ const BillingCycle = ({
   billingCycle,
   setBillingCycle,
 }: Props) => {
-  //To check if the last word in ID (which is either monthly
-  //or yearly) matches with the billingCycle (which can be
-  //either monthly or yearly.
+  //Cut out last word in selectedUsage.id (which is either
+  //monthly or yearly) and check if it matches with the
+  //billingCycle (which can be either monthly or yearly.
   const lastWordInId = selectedUsage?.id.split("-").pop();
 
   const handleSubmit = (event: FormEvent) => {
@@ -50,7 +50,6 @@ const BillingCycle = ({
         <ToggleSwitch
           billingCycle={billingCycle}
           setBillingCycle={setBillingCycle}
-          // onSelectBilling={(billing) => setBillingCycle(billing)}
         />
 
         <button className="btn__next">Next Step</button>

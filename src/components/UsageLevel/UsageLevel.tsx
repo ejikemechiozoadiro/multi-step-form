@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { usageMonthly } from "../../data/UsageMonthly";
 import { usageYearly } from "../../data/usageYearly";
 import "./UsageLevel.css";
@@ -26,10 +25,6 @@ const UsageLevel = ({
   selectedUsage,
   setSelectedUsage,
 }: Props) => {
-  const [selectedIndex, setSelectedIndex] = useState("");
-  const [usageLevel, setUsageLevel] = useState("");
-  const [usagePricing, setUsagePricing] = useState<number>();
-
   return (
     <>
       {(billingCycle === "monthly" ? usageMonthly : usageYearly).map(
@@ -37,9 +32,6 @@ const UsageLevel = ({
           <div
             key={usage.id}
             onClick={() => {
-              setSelectedIndex(usage.id);
-              setUsageLevel(usage.heading);
-              setUsagePricing(usage.pricing);
               setSelectedUsage(usage);
             }}
             className={`usage 

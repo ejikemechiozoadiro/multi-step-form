@@ -15,9 +15,6 @@ interface Props {
 
 const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
   const [personalData, setPersonalData] = useState<PersonalInfo>();
-  // const [billingCycle, setBillingCycle] = useState<string | undefined>();
-  // const [usageLevel, setUsageLevel] = useState<string | undefined>();
-  // const [usagePricing, setUsagePricing] = useState<number | undefined>();
   const [addOns, setAddOns] = useState<AddOn[] | undefined>();
   const [selectedUsage, setSelectedUsage] = useState<Usage>();
   const [billingCycle, setBillingCycle] = useState<string>();
@@ -46,11 +43,6 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
           {currentStep === 2 && (
             <BillingCycle
               onValid={handleNext}
-              // onSelectBilling={(billing) => setBillingCycle(billing)}
-              // onSelectUsageLevel={(usageLevel) => setUsageLevel(usageLevel)}
-              // onSelectUsagePricing={(usagePricing) =>
-              // setUsagePricing(usagePricing)
-              // }
               selectedUsage={selectedUsage}
               setSelectedUsage={setSelectedUsage}
               billingCycle={billingCycle}
@@ -61,7 +53,6 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
             <AddOns
               onValid={handleNext}
               addOnsFromMain={addOns}
-              // onSelectAddons={(allAddOns) => setAddOns(allAddOns)}
               billingCycle={billingCycle}
               selectedAddOns={addOns}
               setSelectedAddOns={setAddOns}
@@ -69,10 +60,8 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
           )}
           {currentStep === 4 && (
             <Summary
-              // usageLevel={usageLevel}
               selectedUsage={selectedUsage}
               billingCycle={billingCycle}
-              // usagePricing={usagePricing}
               addOns={addOns}
             />
           )}
