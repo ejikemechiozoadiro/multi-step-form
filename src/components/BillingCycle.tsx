@@ -4,32 +4,36 @@ import UsageLevel from "./UsageLevel";
 import { Usage } from "./UsageLevel/UsageLevel";
 
 interface Props {
-  onSelectBilling: (billing: string | undefined) => void;
+  // onSelectBilling: (billing: string | undefined) => void;
   onSelectUsageLevel: (usageLevel: string | undefined) => void;
   onSelectUsagePricing: (usagePricing: number | undefined) => void;
   onValid: (onValid: boolean) => void;
   selectedUsage: Usage | undefined;
   setSelectedUsage: React.Dispatch<React.SetStateAction<Usage | undefined>>;
+  billingCycle: string | undefined;
+  setBillingCycle: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const BillingCycle = ({
   onValid,
-  onSelectBilling,
+  // onSelectBilling,
   onSelectUsageLevel,
   onSelectUsagePricing,
   selectedUsage,
   setSelectedUsage,
+  billingCycle,
+  setBillingCycle,
 }: Props) => {
-  const [billingCycle, setBillingCycle] = useState<string>();
+  // const [billingCycle, setBillingCycle] = useState<string>();
   const [usageLevel, setUsageLevel] = useState("");
   const [usagePricing, setUsagePricing] = useState<number | undefined>();
   // const [validate, setValidate] = useState<boolean | null>(null);
 
   useEffect(() => {
-    onSelectBilling(billingCycle);
+    // onSelectBilling(billingCycle);
     onSelectUsageLevel(usageLevel);
     onSelectUsagePricing(usagePricing);
-  }, [billingCycle, usageLevel, usagePricing]);
+  }, [usageLevel, usagePricing]);
 
   //To check if the last word in ID (which is either monthly
   //or yearly) matches with the billingCycle (which can be
@@ -67,7 +71,11 @@ const BillingCycle = ({
           onSelectUsagePricing={(usagePricing) => setUsagePricing(usagePricing)}
         />
 
-        <ToggleSwitch onSelectBilling={(billing) => setBillingCycle(billing)} />
+        <ToggleSwitch
+          billingCycle={billingCycle}
+          setBillingCycle={setBillingCycle}
+          // onSelectBilling={(billing) => setBillingCycle(billing)}
+        />
 
         <button className="btn__next">Next Step</button>
       </form>

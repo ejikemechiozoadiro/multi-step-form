@@ -2,22 +2,27 @@ import { useEffect, useState } from "react";
 import "./ToggleSwitch.css";
 
 interface Props {
-  onSelectBilling: (billing: string) => void;
+  // onSelectBilling: (billing: string) => void;
+  billingCycle: string | undefined;
+  setBillingCycle: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-const ToggleSwitch = ({ onSelectBilling }: Props) => {
-  const [isMonthly, setBilling] = useState<boolean>(true);
-  const billingCycle = isMonthly ? "monthly" : "yearly";
+const ToggleSwitch = ({ billingCycle, setBillingCycle }: Props) => {
+  const [checked, setChecked] = useState<boolean>();
+  const billing = checked ? "monthly" : "yearly";
 
+  //ensures that toggleSwitch maintains its state when you
+  //navigate the steps
   useEffect(() => {
-    onSelectBilling(billingCycle);
-  }, [billingCycle]);
+    if (billingCycle === "yearly") setChecked(true);
+    else setChecked(false);
+  }, []);
 
   return (
     <div className="toggle__switch">
       <label
         htmlFor="billing"
-        className={`${isMonthly ? "step__heading" : "step__info"}`}
+        className={`${!checked ? "step__heading" : "step__info"}`}
       >
         Monthly
       </label>
@@ -25,18 +30,20 @@ const ToggleSwitch = ({ onSelectBilling }: Props) => {
         id="billing"
         type="checkbox"
         className="toggle__checkbox"
+        value={billingCycle}
         onChange={() => {
-          setBilling(!isMonthly);
+          setChecked(!checked);
+          setBillingCycle(billing);
         }}
       />
-      <a onClick={() => setBilling(!isMonthly)} className="toggle__container">
+      <a onClick={() => setChecked(!checked)} className="toggle__container">
         <span
-          className={`toggle__slider ${!isMonthly ? "toggle__checked" : ""}`}
+          className={`toggle__slider ${checked ? "toggle__checked" : ""}`}
         ></span>
       </a>
       <label
         htmlFor="billing"
-        className={`${!isMonthly ? "step__heading" : "step__info"}`}
+        className={`${checked ? "step__heading" : "step__info"}`}
       >
         Yearly
       </label>
