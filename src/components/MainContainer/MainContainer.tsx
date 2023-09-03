@@ -15,11 +15,11 @@ interface Props {
 
 const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
   const [personalData, setPersonalData] = useState<PersonalInfo>();
-  const [addOns, setAddOns] = useState<AddOn[] | undefined>();
   const [selectedUsage, setSelectedUsage] = useState<Usage>();
   const [billingCycle, setBillingCycle] = useState<string>();
-  console.log(selectedUsage);
-  console.log(billingCycle);
+  const [addOns, setAddOns] = useState<AddOn[] | undefined>();
+  const [thankYouPage, setThankYouPage] = useState<boolean>();
+  console.log(thankYouPage);
 
   const handleNext = (isValid: boolean) => {
     if (isValid) onValidNext(true);
@@ -63,11 +63,12 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
               selectedUsage={selectedUsage}
               billingCycle={billingCycle}
               addOns={addOns}
+              onThankYou={(thankYou) => thankYou && setThankYouPage(true)}
             />
           )}
         </div>
       </div>
-      {currentStep !== 1 && (
+      {currentStep !== 1 && !thankYouPage && (
         <button className="btn__prev" onClick={handlePrevious}>
           Go Back
         </button>

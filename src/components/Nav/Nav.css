@@ -65,9 +65,9 @@
     margin: 10px;
 }
 
-.step:hover, .nav__container-step:hover, .nav__container-info:hover {
+/* .step:hover, .nav__container-step:hover, .nav__container-info:hover {
     cursor: pointer;
-}
+} */
 
 .selected {
     background: var(--color-step-selected);

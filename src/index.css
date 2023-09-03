@@ -36,7 +36,7 @@ body {
         justify-content: center;
         background: var(--color-white);
         width: 75vw;
-        height: 74vh;
+        height: 86vh;
         overflow: hidden;
         padding: 1rem;
         position: relative;
@@ -60,6 +60,10 @@ body {
     position: fixed;
     left: 1.2rem;
     bottom: 1rem;
+}
+
+.btn__prev:hover {
+    color: hsl(0, 1%, 57%);
 }
 
 .btn__next {
@@ -97,4 +101,36 @@ body {
         position: absolute;
         right: 2.5rem;
     }
+}
+
+
+
+/* Thank you page */
+.thankyou {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 60vh;
+} 
+
+@media screen and (min-width: 768px) {
+    .thankyou {
+        height: 75vh;
+    }
+}
+
+.thankyou__heading {
+    color: var(--color-primary);
+    margin: 1rem 0;
+}
+
+.thankyou__image {
+    width: 70px
+}
+
+.thankyou__text {
+    color: var(--color-grey);
+    margin-top: 0;
 }
