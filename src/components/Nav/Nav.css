@@ -12,7 +12,7 @@
     .nav {
         background: url(/src/assets/bg-sidebar-desktop.svg);
         background-repeat: no-repeat;
-        border-radius: inherit;
+        border-radius: 12px;
         width: 300px;
         flex-direction: column;
         justify-content: start;
