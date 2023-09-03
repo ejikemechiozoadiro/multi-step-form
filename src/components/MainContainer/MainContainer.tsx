@@ -33,7 +33,7 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
         <div className="main-content">
           {currentStep === 1 && (
             <PersonalInfo
-              onData={personalData}
+              personalData={personalData}
               onDataSubmit={(data) => setPersonalData(data)}
               onValid={handleNext}
             />
