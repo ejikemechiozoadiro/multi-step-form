@@ -12,7 +12,6 @@ export interface AddOn {
 interface Props {
   billingCycle: string | undefined;
   addOnsFromMain: AddOn[] | undefined;
-  // onSelectAddons: (allAddons: AddOn[]) => void;
   onValid: (onValid: boolean) => void;
   selectedAddOns: AddOn[] | undefined;
   setSelectedAddOns: React.Dispatch<React.SetStateAction<AddOn[] | undefined>>;
@@ -20,17 +19,10 @@ interface Props {
 
 const AddOns = ({
   billingCycle,
-  // onSelectAddons,
   onValid,
   selectedAddOns,
   setSelectedAddOns,
 }: Props) => {
-  // const [selectedAddOns, setSelectedAddOns] = useState<AddOn[]>([]);
-
-  // useEffect(() => {
-  //   onSelectAddons(selectedAddOns);
-  // }, [selectedAddOns]);
-
   const handleCheck = (
     e: React.ChangeEvent<HTMLInputElement>,
     addon: AddOn

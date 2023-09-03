@@ -8,8 +8,12 @@ interface Props {
 }
 
 const ToggleSwitch = ({ billingCycle, setBillingCycle }: Props) => {
-  const [checked, setChecked] = useState<boolean>();
-  const billing = checked ? "monthly" : "yearly";
+  const [checked, setChecked] = useState<boolean>(false);
+  const billing = !checked ? "monthly" : "yearly";
+
+  useEffect(() => {
+    setBillingCycle(billing);
+  }, [checked]);
 
   //ensures that toggleSwitch maintains its state when you
   //navigate the steps
@@ -22,7 +26,9 @@ const ToggleSwitch = ({ billingCycle, setBillingCycle }: Props) => {
     <div className="toggle__switch">
       <label
         htmlFor="billing"
-        className={`${!checked ? "step__heading" : "step__info"}`}
+        className={`${
+          billingCycle === "monthly" ? "step__heading" : "step__info"
+        }`}
       >
         Monthly
       </label>
@@ -33,7 +39,6 @@ const ToggleSwitch = ({ billingCycle, setBillingCycle }: Props) => {
         value={billingCycle}
         onChange={() => {
           setChecked(!checked);
-          setBillingCycle(billing);
         }}
       />
       <a onClick={() => setChecked(!checked)} className="toggle__container">
@@ -43,7 +48,9 @@ const ToggleSwitch = ({ billingCycle, setBillingCycle }: Props) => {
       </a>
       <label
         htmlFor="billing"
-        className={`${checked ? "step__heading" : "step__info"}`}
+        className={`${
+          billingCycle === "yearly" ? "step__heading" : "step__info"
+        }`}
       >
         Yearly
       </label>
