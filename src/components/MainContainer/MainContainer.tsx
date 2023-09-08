@@ -73,7 +73,7 @@ const MainContainer = ({ currentStep, onValidNext, onPrevious }: Props) => {
           Go Back
         </button>
       )}
-      <div className="white__space"></div>
+      {!thankYouPage && <div className="white__space"></div>}{" "}
     </>
   );
 };
