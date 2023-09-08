@@ -2,10 +2,16 @@
     background: url(/src/assets/bg-sidebar-mobile.svg);
     background-size: cover;
     width: 100%;
-    height: 20vh;
+    height: 100px;
     display: flex;
     justify-content: center;
     padding-top: 1.9rem;
+    margin-bottom: 1.5rem;
+    
+}
+
+.nav__container {
+    /* z-index: 10; */
 }
 
 @media screen and (min-width: 768px) {
@@ -16,8 +22,8 @@
         width: 300px;
         flex-direction: column;
         justify-content: start;
-        height: -webkit-fill-available;
-        height: 100%;
+        /* height: -webkit-fill-available; */
+        height: 94%;
         color: var(--color-white);
     }
     
